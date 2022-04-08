@@ -1,4 +1,4 @@
-package com.bandcat.BandCat;
+package com.bandcat.BandCat.model;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

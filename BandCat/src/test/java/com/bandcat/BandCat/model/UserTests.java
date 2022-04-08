@@ -17,7 +17,7 @@ public class UserTests
 
     @Test
     @DisplayName("Test for the creation of a new User")
-    public void canCreateANewUser()
+    public void canCreateANewUserObj()
     {
         User u = new User();
 

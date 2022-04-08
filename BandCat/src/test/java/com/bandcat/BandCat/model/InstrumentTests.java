@@ -16,7 +16,7 @@ public class InstrumentTests
 
     @Test
     @DisplayName("Test for the creation of a new User")
-    public void canCreateANewUser()
+    public void canCreateANewInstrumentObj()
     {
         Instrument i = new Instrument();
 

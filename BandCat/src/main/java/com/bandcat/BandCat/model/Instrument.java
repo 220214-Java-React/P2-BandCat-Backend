@@ -1,24 +1,22 @@
 package com.bandcat.BandCat.model;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 
 @Entity (name = "instruments")
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Instrument {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private int InstrumentID;
-    private String instrumentName;
+    private int instrumentID;
+    private InstrumentOptions instrumentName;
     private int confidence;
 
+    @OneToOne(mappedBy = "instrument")
+    private User user;
 }

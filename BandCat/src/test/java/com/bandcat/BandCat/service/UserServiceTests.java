@@ -9,21 +9,36 @@ import org.springframework.boot.web.server.LocalServerPort;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+/**
+ * This class is designed to create Tests for User services.
+ */
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) // webEnvironment creates a temporary web server port to run requests/responses through
 public class UserServiceTests
 {
+    /**
+     * Marcus Glover
+     */
     @LocalServerPort
-    private int port;
+    private int port;           // Port to use in webEnvironment
 
+    /**
+     * Marcus Glover
+     */
     @Autowired
-    UserService userService;
+    UserService userService;    // Services to use
 
+    /**
+     * @author Marcus Glover
+     */
     @Test
     public void TestClassWorks()
     {
         assertTrue(true);
     }
 
+    /**
+     * @author Marcus Glover
+     */
     @Test
     @DisplayName("Test for the creation of a new User")
     public void canCreateANewUser()

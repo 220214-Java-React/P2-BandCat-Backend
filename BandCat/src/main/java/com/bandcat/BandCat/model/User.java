@@ -1,21 +1,17 @@
 package com.bandcat.BandCat.model;
 
-import jdk.jfr.StackTrace;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.Cascade;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "users")
+@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@RequiredArgsConstructor
-public class User {
-
+public class User
+{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userID;
@@ -23,4 +19,8 @@ public class User {
     private String password;
     private String email;
     private String phoneNumber;
+
+    @OneToOne
+    @JoinColumn(name = "instrumentID", referencedColumnName = "instrumentID")
+    private Instrument instrument;
 }

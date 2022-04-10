@@ -1,7 +1,7 @@
 package com.bandcat.BandCat.model;
 
 /**
- * @author Marcus Glover
+ * @author Marcus
  * Enum that pre-defines the options for Instrument choices
  */
 public enum InstrumentOptions
@@ -22,29 +22,14 @@ public enum InstrumentOptions
     private final String instrumentName;
 
     /**
-     * Getter -> Gets the String value of an enum
-     * @return The Enum's String representation
-     */
-    public  String getInstrumentName() {return instrumentName;}
-
-    /**
      * Private Constructor -> Sets the Enums
      * @param instrumentName String representation of the Enum
      */
     InstrumentOptions(String instrumentName) {this.instrumentName = instrumentName;}
 
     /**
-     * Method to return the proper enum based on String passed in
-     * @param name String representation to search for
-     * @return Enum version of param
+     * Getter -> Gets the String value of an enum
+     * @return The Enum's String representation
      */
-    public static InstrumentOptions getInstrumentOption(String name)
-    {
-        for (InstrumentOptions iO : InstrumentOptions.values())     // Loop through Enum values
-        {
-            if (iO.getInstrumentName().equals(name)) {return iO;}   // If Enum name matches name passed in, return the Enum
-        }
-
-        return NONE;    // None was found
-    }
+    public String getInstrumentName() {return instrumentName;}
 }

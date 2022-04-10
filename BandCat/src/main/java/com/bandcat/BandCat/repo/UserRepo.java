@@ -4,6 +4,8 @@ import com.bandcat.BandCat.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * This class is designed to handle the persistence logic
  * between Services and Database, for Users.
@@ -11,4 +13,13 @@ import org.springframework.stereotype.Repository;
  * to persist data to a database.
  */
 @Repository
-public interface UserRepo extends JpaRepository<User, Integer> {}
+public interface UserRepo extends JpaRepository<User, Integer>
+{
+    /**
+     * @author Elaine, Jazib, Marcus
+     * Method to find a User based on its username
+     * @param username The username to search for
+     * @return The User found
+     */
+    User findByUsername(String username);
+}

@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class InstrumentTests
 {
     /**
-    * @author Marcus Glover
+    * @author Marcus
     */
     @Test
     public void TestClassWorks()
@@ -21,7 +21,7 @@ public class InstrumentTests
     }
 
     /**
-     * @author Marcus Glover
+     * @author Marcus
      */
     @Test
     @DisplayName("Test for the creation of a new Instrument")
@@ -33,14 +33,14 @@ public class InstrumentTests
     }
 
     /**
-     * @author Marcus Glover
+     * @author Marcus
      */
     @Test
-    @DisplayName("Test for Instrument creation")
+    @DisplayName("Test for Instrument Name initialization")
     public void doesEnumWork()
     {
-        Instrument i = new Instrument(1, InstrumentOptions.getInstrumentOption("Piano"), 10, new User());
+        Instrument i = new Instrument(1, InstrumentOptions.GUITAR, 10, new User());
 
-        assertEquals("Piano", i.getInstrumentName().getInstrumentName());
+        assertEquals(InstrumentOptions.GUITAR, i.getInstrumentName());
     }
 }

@@ -61,4 +61,16 @@ public class UserService
     {
         return userRepository.findByUsername(username);
     }
+
+    /**
+     * @author Jazib
+     * Method -> Searches for a User based on User ID
+     * @param id The User ID to search by
+     * @return The User found
+     */
+    public User getByUserID(Integer id){
+
+        return userRepository.findById(id).orElse(new User());
+
+    }
 }

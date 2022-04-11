@@ -32,7 +32,7 @@ public class User
      * Also a User Field
      * Foreign Key to reference an Instrument associating a User to their Instrument
      */
-    @OneToOne   // Relationship with Instruments
-    @JoinColumn(name = "instrumentID", referencedColumnName = "instrumentID")   // Joining column -> name = name of join column, refColName = column name of an Instrument to reference when joining
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)   // Relationship with Instruments
+    @PrimaryKeyJoinColumn
     private Instrument instrument;
 }

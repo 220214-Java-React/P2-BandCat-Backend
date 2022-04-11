@@ -47,4 +47,5 @@ public class UserControllerTests
                 .content("{\"username\": \"user\"}"))   // Set content to send (only works for post, use params for get)
                 .andExpect(status().isOk());            // Expectation for test
     }
+
 }

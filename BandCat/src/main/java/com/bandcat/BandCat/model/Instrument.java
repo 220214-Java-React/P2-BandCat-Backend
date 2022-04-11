@@ -10,13 +10,13 @@ import javax.persistence.*;
  * to create constructors, getters, setters, etc.
  * as well as associate different models to construct database tables.
  */
+@Builder
 @Entity(name = "instruments")       // Indicates an Object of this type is persistable
 @RequiredArgsConstructor            // Creates constructor with required fields (fields w/ final fields and fields with constraints such as @NonNull)
 @AllArgsConstructor                 // Creates an all args constructor
 @Getter                             // Creates getters
 @Setter                             // Creates setters
-public class Instrument
-{
+public class Instrument {
     /**
      * Instrument Fields
      */

@@ -32,8 +32,6 @@ public class UserTests
 
         assertNotNull(u);
     }
-<<<<<<< Updated upstream
-=======
 
     /**
      * @author Elaine & Marcus
@@ -58,5 +56,4 @@ public void TestUsersFields() {
 
 }
 
->>>>>>> Stashed changes
 }

@@ -3,6 +3,9 @@ package com.bandcat.BandCat.repo;
 import com.bandcat.BandCat.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.xml.ws.ResponseWrapper;
 
 import java.util.List;
 
@@ -13,6 +16,7 @@ import java.util.List;
  * to persist data to a database.
  */
 @Repository
+
 public interface UserRepo extends JpaRepository<User, Integer>
 {
     /**

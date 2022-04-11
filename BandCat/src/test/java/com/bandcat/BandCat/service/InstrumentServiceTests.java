@@ -26,9 +26,11 @@ public class InstrumentServiceTests
 
     /**
      * Marcus Glover
+     *
+     * Services to use
      */
     @Autowired
-    InstrumentService instrumentService;    // Service to use
+    InstrumentService instrumentService;
 
     @Autowired
     UserService userService;
@@ -50,13 +52,17 @@ public class InstrumentServiceTests
     public void persistANewInstrumentWithTheInstrumentServiceClass()
     {
         User u = new User();            // Create a User to be assigned this instrument
-        userService.createNewUser(u);   // Persist them
+        u.setUsername("A_User");
+        u = userService.createNewUser(u);   // Create the user in database to use just for this test
+        System.out.println(u.getUserID());
 
-        // Create an Instrument
+        // Create an Instrument w/ user that this instrument should be mapped to
         Instrument i = new Instrument(0, InstrumentOptions.CLARINET, 10, u);
 
-        // Check if the expected value matches the Instrument created
-        assertEquals(InstrumentOptions.CLARINET , instrumentService.createNewInstrument(i).getInstrumentName());
-    }
+        // Create/persist the Instrument
+        i = instrumentService.createNewInstrument(i, u);
 
+        // Check if the expected value matches the Instrument created
+        assertEquals(InstrumentOptions.CLARINET , i.getInstrumentName());
+    }
 }

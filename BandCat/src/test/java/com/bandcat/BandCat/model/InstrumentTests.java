@@ -2,10 +2,15 @@ package com.bandcat.BandCat.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
+@SpringBootTest //Note from christian: please take a look and make sure this is needed
+/**
+ * By: Elaine R. Constancio
+ */
 /**
  * This class is designed to create Tests for Instrument models.
  */
@@ -32,6 +37,7 @@ public class InstrumentTests
         assertNotNull(i);
     }
 
+
     /**
      * @author Marcus
      */
@@ -43,4 +49,5 @@ public class InstrumentTests
 
         assertEquals(InstrumentOptions.GUITAR, i.getInstrumentName());
     }
+
 }

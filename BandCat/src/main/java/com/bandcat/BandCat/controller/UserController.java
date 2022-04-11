@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * manage requests sent to the API and responses sent outward.
  */
 @RestController
+
 @RequestMapping("/users")
 public class UserController {
     @Autowired
@@ -31,3 +32,4 @@ public class UserController {
         return userService.createNewUser(user);  // returns user profile
     }
 }
+

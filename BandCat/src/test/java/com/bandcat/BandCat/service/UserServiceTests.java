@@ -54,7 +54,6 @@ public class UserServiceTests
         // Check if the username("Username") matches the username of the User returned from creation method in userService
         assertEquals("Username", userService.createNewUser(u).getUsername());
     }
-
     /**
      * @author Marcus
      */
@@ -113,5 +112,6 @@ public class UserServiceTests
         // Check if the expected value ("Username") matches the username of the User returned from userService
         assertEquals(1, userService.getByUserID(u.getUserID()).getUserID());
     }
-
 }
+
+

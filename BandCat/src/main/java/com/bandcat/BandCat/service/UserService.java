@@ -34,6 +34,7 @@ public class UserService
      * @author Marcus
      * Method -> Creates a new user
      * @param user The User to persist
+     *
      * @return The User that was persisted
      */
     public User createNewUser(User user)
@@ -74,3 +75,5 @@ public class UserService
 
     }
 }
+
+

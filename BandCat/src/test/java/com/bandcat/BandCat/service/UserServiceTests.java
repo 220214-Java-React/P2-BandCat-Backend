@@ -98,4 +98,20 @@ public class UserServiceTests
         // Check if the expected value ("Username") matches the username of the User returned from userService
         assertEquals("Username", userService.findByUsername(u.getUsername()).getUsername());
     }
+
+    /**
+     * @author Jazib
+     */
+    @Test
+    @DisplayName("Test to find a user by user id")
+    public void getByUserID()
+    {
+        User u = new User();            // Instantiate a user
+        u.setUserID(1);      // Set the user id
+        userService.createNewUser(u);   // Create/persist the user
+
+        // Check if the expected value ("Username") matches the username of the User returned from userService
+        assertEquals(1, userService.getByUserID(u.getUserID()).getUserID());
+    }
+
 }

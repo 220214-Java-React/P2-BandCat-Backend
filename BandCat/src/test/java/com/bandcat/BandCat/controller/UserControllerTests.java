@@ -1,56 +1,51 @@
 package com.bandcat.BandCat.controller;
 
-import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.springframework.http.RequestEntity.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Maybe come back to later.
- * Utilizing Postman for controller testing
- * @author Tyler Tom and Marcus
+ * @author Tyler, Tom, Marcus
+ *
+ * This class is designed to test the UserController class
  */
-@WebMvcTest
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) // webEnvironment creates a temporary web server port to run requests/responses through
-public class UserControllerTests {
-
-    @LocalServerPort
-    private int port;           // Port to use in webEnvironment
-    @Autowired
-    private MockMvc mockMvc;
-    @Autowired
-    private ObjectMapper objectMapper;
+@WebMvcTest(UserController.class)
+public class UserControllerTests
+{
+    /**
+     * Tyler, Tom, Marcus
+     *
+     * Service(s) needed for the Controller
+     */
     @MockBean
     private UserService userService;
 
+    /**
+     * Tyler, Tom, Marcus
+     *
+     * For HTTP request/response support from Spring
+     */
+    @Autowired
+    private MockMvc mockMvc;
 
+    /**
+     * @author Tyler, Tom, Marcus
+     * @throws Exception HTTP Request could fail
+     */
     @Test
-    public void TestClassWorks()
+    void postTest() throws Exception
     {
-        assertTrue(true);
+        // mockMvc -> used to perform HTTP requests
+        mockMvc.perform(post("/users")        // Indicate HTTP method and url
+                .contentType("application/json")        // Indicate content type
+                .content("{\"username\": \"user\"}"))   // Set content to send (only works for post, use params for get)
+                .andExpect(status().isOk());            // Expectation for test
     }
-
-    @Test
-    public void HttpWorks() throws Exception {
-     mockMvc.perform((RequestBuilder) post("/").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-    }
-
-
-
-
-
 
 }

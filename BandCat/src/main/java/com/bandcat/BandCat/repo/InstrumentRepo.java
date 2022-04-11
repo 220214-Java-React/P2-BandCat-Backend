@@ -17,22 +17,12 @@ import java.util.List;
 public interface InstrumentRepo extends JpaRepository<Instrument, Integer>
 {
     /**
-     * @see com.bandcat.BandCat.service.InstrumentService#findByName(InstrumentOptions)
-     */
-    Instrument findByInstrumentName(InstrumentOptions instrumentName);
-
-    /**
-     * @see com.bandcat.BandCat.service.InstrumentService#findByConfidence(Integer) 
-     */
-    Instrument findByConfidence(Integer confidence);
-
-    /**
-     * @see com.bandcat.BandCat.service.InstrumentService#findListByInstrumentName(InstrumentOptions) 
+     * @see com.bandcat.BandCat.service.InstrumentService#findListByInstrumentName(InstrumentOptions)
      */
     List<Instrument> findListByInstrumentName(InstrumentOptions instrumentName);
 
     /**
-     * @see com.bandcat.BandCat.service.InstrumentService#findListByConfidence(Integer) 
+     * @see com.bandcat.BandCat.service.InstrumentService#findListByConfidence(Integer)
      */
     List<Instrument> findListByConfidence(Integer confidence);
 }

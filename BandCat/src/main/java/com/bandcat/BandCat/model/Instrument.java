@@ -1,5 +1,6 @@
 package com.bandcat.BandCat.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 
@@ -33,5 +34,6 @@ public class Instrument {
     @OneToOne   // Relationship with Users
     @MapsId     // Maps this Instrument to the primary key of User
     @JoinColumn(name = "user_id")   // The column that connects Users and Instruments
+    @JsonIgnore
     private User user;
 }

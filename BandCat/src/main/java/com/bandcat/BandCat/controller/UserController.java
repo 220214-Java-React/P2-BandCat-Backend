@@ -14,7 +14,6 @@ import java.util.List;
  * manage requests sent to the API and responses sent outward.
  */
 @RestController
-
 @RequestMapping("/users")
 public class UserController {
     @Autowired
@@ -46,7 +45,7 @@ public class UserController {
     @GetMapping("/{id}")
     public User getByUserId(@PathVariable Integer id)
     {
-        return userService.getByUserID(id); // returns user profile according to their ID number
+        return userService.findByUserID(id); // returns user profile according to their ID number
 
     }
 

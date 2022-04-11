@@ -1,10 +1,13 @@
 package com.bandcat.BandCat.service;
 
 import com.bandcat.BandCat.model.Instrument;
+import com.bandcat.BandCat.model.InstrumentOptions;
 import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.repo.InstrumentRepo;
 import com.bandcat.BandCat.repo.UserRepo;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * This class is designed to handle the processing logic
@@ -55,5 +58,37 @@ public class InstrumentService
 
         // Return the instrument created
         return userToUpdate.getInstrument();
+    }
+
+    /**
+     * @author Jazib and Marcus
+     * Method -> Gets all instruments which are tied to User IDs
+     * @return The list of Instruments
+     */
+    public List<Instrument> getAllInstruments()
+    {
+        return instrumentRepo.findAll();
+    }
+
+    /**
+     * Method -> Gets a list Instrument based on the Name
+     * @author Jazib and Marcus
+     * @param instrumentName The Name search criteria
+     * @return The Instrument found
+     */
+    public List<Instrument> findListByInstrumentName(InstrumentOptions instrumentName)
+    {
+        return instrumentRepo.findListByInstrumentName(instrumentName);
+    }
+
+    /**
+     * Method -> Gets a list of Instruments based on the Confidence
+     * @author Jazib and Marcus
+     * @param confidence The confidence search criteria
+     * @return The Instruments Found
+     */
+    public List<Instrument> findListByConfidence(Integer confidence)
+    {
+        return instrumentRepo.findListByConfidence(confidence);
     }
 }

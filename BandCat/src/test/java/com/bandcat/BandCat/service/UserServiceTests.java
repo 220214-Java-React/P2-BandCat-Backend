@@ -1,7 +1,5 @@
 package com.bandcat.BandCat.service;
 
-import com.bandcat.BandCat.model.Instrument;
-import com.bandcat.BandCat.model.InstrumentOptions;
 import com.bandcat.BandCat.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -103,14 +101,14 @@ public class UserServiceTests
      */
     @Test
     @DisplayName("Test to find a user by user id")
-    public void getByUserID()
+    public void findByUserID()
     {
         User u = new User();            // Instantiate a user
         u.setUserID(1);      // Set the user id
         userService.createNewUser(u);   // Create/persist the user
 
         // Check if the expected value ("Username") matches the username of the User returned from userService
-        assertEquals(1, userService.getByUserID(u.getUserID()).getUserID());
+        assertEquals(1, userService.findByUserID(u.getUserID()).getUserID());
     }
 }
 

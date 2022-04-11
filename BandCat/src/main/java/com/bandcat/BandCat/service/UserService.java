@@ -2,7 +2,6 @@ package com.bandcat.BandCat.service;
 
 import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.repo.UserRepo;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class UserService
     /**
      * Reference to UserRepo instance
      */
-    final private UserRepo userRepository;
+    final private UserRepo userRepo;
 
     /**
      * @author Marcus
@@ -27,19 +26,19 @@ public class UserService
      */
     public UserService(UserRepo uR)
     {
-        this.userRepository = uR;
+        this.userRepo = uR;
     }
 
     /**
      * @author Marcus
-     * Method -> Creates a new user
+     * Method -> Creates a new user/Updates a user
      * @param user The User to persist
      *
      * @return The User that was persisted
      */
     public User createNewUser(User user)
     {
-       return userRepository.save(user);
+       return userRepo.save(user);
     }
 
     /**
@@ -49,7 +48,7 @@ public class UserService
      */
     public List<User> getAllUsers()
     {
-        return userRepository.findAll();
+        return userRepo.findAll();
     }
 
     /**
@@ -60,7 +59,7 @@ public class UserService
      */
     public User findByUsername(String username)
     {
-        return userRepository.findByUsername(username);
+        return userRepo.findByUsername(username);
     }
 
     /**
@@ -69,10 +68,20 @@ public class UserService
      * @param id The User ID to search by
      * @return The User found
      */
-    public User getByUserID(Integer id){
+    public User findByUserID(Integer id){
 
-        return userRepository.findById(id).orElse(new User());
+        return userRepo.findById(id).orElse(new User());
 
+    }
+
+    /**
+     * @author Jazib and Marcus
+     * Method -> Deletes a user
+     * @param user The User to delete
+     */
+    public void deleteUser(User user)
+    {
+        userRepo.delete(user);
     }
 }
 

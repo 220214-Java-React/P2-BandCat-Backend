@@ -4,6 +4,8 @@ import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.repo.UserRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * This class is designed to handle the processing logic
  * between Controllers and Repo, for Users. It should be used for
@@ -29,10 +31,32 @@ public class UserService
     /**
      * Method -> Creates a new user
      * @param user The User to persist
+     *
      * @return The User that was persisted
      */
     public User createNewUser(User user)
     {
        return userRepository.save(user);
     }
+
+    /**
+     * @author Elaine R Constancio
+     * @return Returning the entire list of Users
+     */
+    public List<User> getAllUsers() {
+       return userRepository.findAll();
+    }
+
+    public User findUserByID(Integer id) {
+        return userRepository.findById(id).orElse(new User());
+
+    }
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
+
+
+
 }
+
+

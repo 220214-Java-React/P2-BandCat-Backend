@@ -32,4 +32,19 @@ public class UserServiceTests
         u.setUsername("Username");
         assertEquals("Username", userService.createNewUser(u).getUsername());
     }
+    @Test
+    @DisplayName("Test to test user by Username")
+    public void  findByUsername()
+    {
+        User u = new User();
+        u.setUsername("Users");
+        userService.createNewUser(u);
+//        User p = userService.findByUsername(u.getUsername());
+/**
+ * What this is doing is confirming that it's getting the matching or correct username (.getusername()).getUsername()); */
+
+        assertEquals("Users", userService.findByUsername(u.getUsername()).getUsername());
+ }
 }
+
+

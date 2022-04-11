@@ -23,4 +23,6 @@ public class UserTests
 
         assertNotNull(u);
     }
+
+
 }

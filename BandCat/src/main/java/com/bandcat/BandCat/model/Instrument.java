@@ -21,7 +21,7 @@ public class Instrument {
      * Instrument Fields
      */
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private int instrumentID;
     private InstrumentOptions instrumentName;
     private int confidence;
@@ -30,6 +30,8 @@ public class Instrument {
      * Also an Instrument Field
      * Foreign Key to reference a User associating an Instrument to its owner (User)
      */
-    @OneToOne(mappedBy = "instrument")  // Relationship with Users -> mappedBy = name of field in User model
-    private User player;
+    @OneToOne   // Relationship with Users
+    @MapsId     // Maps this Instrument to the primary key of User
+    @JoinColumn(name = "user_id")   // The column that connects Users and Instruments
+    private User user;
 }

@@ -2,6 +2,7 @@ package com.bandcat.BandCat.service;
 
 import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.repo.UserRepo;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class UserService
     final private UserRepo userRepository;
 
     /**
+     * @author Marcus
      * Constructor -> Spring will pass in UserRepo instance
      * @param uR The instance of UserRepo needed
      */
@@ -29,6 +31,7 @@ public class UserService
     }
 
     /**
+     * @author Marcus
      * Method -> Creates a new user
      * @param user The User to persist
      *
@@ -40,23 +43,37 @@ public class UserService
     }
 
     /**
-     * @author Elaine R Constancio
-     * @return Returning the entire list of Users
+     * @author Elaine, Jazib, Marcus
+     * Method -> Gets a list of all Users
+     * @return List of Users
      */
-    public List<User> getAllUsers() {
-       return userRepository.findAll();
+    public List<User> getAllUsers()
+    {
+        return userRepository.findAll();
     }
 
-    public User findUserByID(Integer id) {
-        return userRepository.findById(id).orElse(new User());
-
-    }
-    public User findByUsername(String username){
+    /**
+     * @author Elaine, Jazib, Marcus
+     * Method -> Searches for a User based on username
+     * @param username The username to search by
+     * @return The User found
+     */
+    public User findByUsername(String username)
+    {
         return userRepository.findByUsername(username);
     }
 
+    /**
+     * @author Jazib
+     * Method -> Searches for a User based on User ID
+     * @param id The User ID to search by
+     * @return The User found
+     */
+    public User getByUserID(Integer id){
 
+        return userRepository.findById(id).orElse(new User());
 
+    }
 }
 
 

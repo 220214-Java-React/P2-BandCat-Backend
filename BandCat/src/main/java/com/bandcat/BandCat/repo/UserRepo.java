@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.xml.ws.ResponseWrapper;
 
+import java.util.List;
+
 /**
  * This class is designed to handle the persistence logic
  * between Services and Database, for Users.
@@ -14,6 +16,14 @@ import javax.xml.ws.ResponseWrapper;
  * to persist data to a database.
  */
 @Repository
-public interface UserRepo extends JpaRepository<User, Integer> {
-    User findByUsername (String username);
+
+public interface UserRepo extends JpaRepository<User, Integer>
+{
+    /**
+     * @author Elaine, Jazib, Marcus
+     * Method to find a User based on its username
+     * @param username The username to search for
+     * @return The User found
+     */
+    User findByUsername(String username);
 }

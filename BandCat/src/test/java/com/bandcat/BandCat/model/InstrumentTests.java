@@ -4,22 +4,30 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+
+@SpringBootTest //Note from christian: please take a look and make sure this is needed
 /**
  * By: Elaine R. Constancio
  */
-
+/**
+ * This class is designed to create Tests for Instrument models.
+ */
 public class InstrumentTests
 {
+    /**
+    * @author Marcus
+    */
     @Test
     public void TestClassWorks()
     {
         assertTrue(true);
     }
 
+    /**
+     * @author Marcus
+     */
     @Test
     @DisplayName("Test for the creation of a new Instrument")
     public void canCreateANewInstrumentObj()
@@ -27,6 +35,19 @@ public class InstrumentTests
         Instrument i = new Instrument();
 
         assertNotNull(i);
+    }
+
+
+    /**
+     * @author Marcus
+     */
+    @Test
+    @DisplayName("Test for Instrument Name initialization")
+    public void doesEnumWork()
+    {
+        Instrument i = new Instrument(1, InstrumentOptions.GUITAR, 10, new User());
+
+        assertEquals(InstrumentOptions.GUITAR, i.getInstrumentName());
     }
 
 }

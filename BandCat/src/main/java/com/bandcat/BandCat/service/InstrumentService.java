@@ -71,39 +71,6 @@ public class InstrumentService
     }
 
     /**
-     * Method -> Gets an Instrument based on ID
-     * @author Jazib and Marcus
-     * @param id ID search criteria
-     * @return The Instrument found
-     */
-    public Instrument getByUserID(Integer id)
-    {
-        return instrumentRepo.getById(id);
-    }
-
-    /**
-     * Method -> Gets an Instrument based on the Name
-     * @author Jazib and Marcus
-     * @param instrumentName The Name search criteria
-     * @return The Instrument found
-     */
-    public Instrument findByName(InstrumentOptions instrumentName)
-    {
-        return instrumentRepo.findByInstrumentName(instrumentName);
-    }
-
-    /**
-     * Method -> Gets an Instrument based on the Confidence
-     * @author Jazib and Marcus
-     * @param confidence The confidence search criteria
-     * @return The Instrument Found
-     */
-    public Instrument findByConfidence(Integer confidence)
-    {
-        return instrumentRepo.findByConfidence(confidence);
-    }
-
-    /**
      * Method -> Gets a list Instrument based on the Name
      * @author Jazib and Marcus
      * @param instrumentName The Name search criteria

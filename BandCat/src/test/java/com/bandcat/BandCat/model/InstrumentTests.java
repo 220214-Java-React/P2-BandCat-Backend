@@ -50,4 +50,42 @@ public class InstrumentTests
         assertEquals(InstrumentOptions.GUITAR, i.getInstrumentName());
     }
 
+
+    /**
+     * @author Elaine & Marcus
+     */
+    @Test
+    @DisplayName("Test for Instrument Name initialization")
+    public void doesEnumWork2()
+    {
+        Instrument i = new Instrument(1, InstrumentOptions.PIANO, 10, new User());
+
+        assertEquals(InstrumentOptions.PIANO, i.getInstrumentName());
+    }
+    @Test
+    @DisplayName("Test for Instrument Name initialization")
+    public void doesEnumWork3()
+    {
+        Instrument i = new Instrument(1, InstrumentOptions.SAXOPHONE, 10, new User());
+
+        assertEquals(InstrumentOptions.SAXOPHONE, i.getInstrumentName());
+    }
+    @Test
+    @DisplayName("Test for Instrument Name initialization")
+    public void doesEnumWork4()
+    {
+        Instrument i = new Instrument(1, InstrumentOptions.TRUMPET, 10, new User());
+
+        assertEquals(InstrumentOptions.TRUMPET, i.getInstrumentName());
+    }
+    @Test
+    @DisplayName("Test for Instrument Name initialization")
+    public void doesEnumWork5()
+    {
+        Instrument i = new Instrument(1, InstrumentOptions.CLARINET, 10, new User());
+
+        assertEquals(InstrumentOptions.CLARINET, i.getInstrumentName());
+    }
+
+
 }

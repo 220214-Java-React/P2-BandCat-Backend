@@ -3,10 +3,9 @@ package com.bandcat.BandCat.controller;
 import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * This class is designed to handle requests/responses for User-based
@@ -30,6 +29,36 @@ public class UserController {
     public User createNewUser(@RequestBody User user)
     {
         return userService.createNewUser(user);  // returns user profile
+    }
+
+    @GetMapping
+    public List<User> getAllUsers()
+    {
+        return userService.getAllUsers();
+
+    }
+
+    /**
+     * A method to find a user by their User ID
+     * @author Tyler
+     * @param id
+     */
+    @GetMapping("/{id}")
+    public User getByUserId(@PathVariable Integer id)
+    {
+        return userService.getByUserID(id); // returns user profile according to their ID number
+
+    }
+
+    /**
+     * A method to find user information based off username
+     * @author Tyler
+     * @param username
+     */
+    @GetMapping("/byUsername/{username}")
+    public User findByUsername(@PathVariable String username)
+    {
+        return userService.findByUsername(username); // returns a user profile based off their username
     }
 }
 

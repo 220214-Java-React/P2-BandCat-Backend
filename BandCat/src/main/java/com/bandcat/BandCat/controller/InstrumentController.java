@@ -1,11 +1,14 @@
 package com.bandcat.BandCat.controller;
 
 import com.bandcat.BandCat.model.Instrument;
+import com.bandcat.BandCat.model.InstrumentOptions;
 import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.service.InstrumentService;
 import com.bandcat.BandCat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * This class is designed to handle requests/responses for Instrument-based
@@ -23,11 +26,11 @@ public class InstrumentController
     @Autowired
     UserService userService;
 
-    //TODO: Figure out how to place this in postman, do I need new User in my return?
     /**
      * Method to create new Instrument from a http request
      * @author Tyler, Marcus, Elaine, Christian
-     * @param instrument
+     * @param instrument Instrument to persist
+     * @param id User to find and update
      *
      */
     @PostMapping("/{id}")
@@ -35,5 +38,40 @@ public class InstrumentController
     {
         User u = userService.findByUserID(id);
         return instrumentService.createNewInstrument(instrument, u);
+    }
+
+    /**
+     * Method to get all Instruments
+     * @author Tyler, Marcus
+     *
+     */
+    @GetMapping("/all")
+    public List<Instrument> getAllInstruments()
+    {
+        return instrumentService.getAllInstruments();
+    }
+
+    /**
+     * Method to get all Instruments by instrumentName
+     * @author Tyler, Marcus
+     * @param name Instrument Name to search by
+     *
+     */
+    @GetMapping("/allByName/{name}")
+    public List<Instrument> getAllInstrumentsByName(@PathVariable InstrumentOptions name)
+    {
+        return instrumentService.findListByInstrumentName(name);
+    }
+
+    /**
+     * Method to get all Instruments by confidence
+     * @author Tyler, Marcus
+     * @param confidence Confidence amount to search by
+     *
+     */
+    @GetMapping("/allByConfidence/{confidence}")
+    public List<Instrument> getAllInstruments(@PathVariable int confidence)
+    {
+        return instrumentService.findListByConfidence(confidence);
     }
 }

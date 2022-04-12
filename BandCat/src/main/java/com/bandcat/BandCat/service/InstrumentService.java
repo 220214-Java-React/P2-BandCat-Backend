@@ -61,6 +61,17 @@ public class InstrumentService
     }
 
     /**
+     * Method -> Gets an Instrument by ID
+     * @author Tyler, Marcus
+     * @param id ID search criteria
+     * @return The Instrument found
+     */
+    public Instrument getByInstrumentID(Integer id)
+    {
+        return instrumentRepo.getById(id);
+    }
+
+    /**
      * @author Jazib and Marcus
      * Method -> Gets all instruments which are tied to User IDs
      * @return The list of Instruments

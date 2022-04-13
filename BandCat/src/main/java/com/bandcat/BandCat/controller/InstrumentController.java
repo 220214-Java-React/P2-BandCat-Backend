@@ -17,6 +17,7 @@ import java.util.List;
  * manage requests sent to the API and responses sent outward.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/instruments")
 public class InstrumentController
 {

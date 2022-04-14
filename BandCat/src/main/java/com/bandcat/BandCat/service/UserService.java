@@ -83,6 +83,19 @@ public class UserService
     {
         userRepo.delete(user);
     }
+
+
+    /**
+     * Method -> Compares the password between the database user and login user
+     * @author Marcus
+     * @param user User logging in
+     * @param dbUser Database User Info
+     * @return True/False of whether passwords match
+     */
+    public boolean comparePassword(User user, User dbUser)
+    {
+        return user.getPassword().equals(dbUser.getPassword());
+    }
 }
 
 

@@ -14,7 +14,13 @@ public enum InstrumentOptions
     PIANO("Piano"),
     SAXOPHONE("Saxophone"),
     TRUMPET("Trumpet"),
-    CLARINET("Clarinet");
+    CLARINET("Clarinet"),
+    BASS("Bass"),
+    HARMONICA( "Harmonica"),
+    DRUMS("Drums"),
+    SINGER("Singer");
+
+
 
     /**
      * String reference of each enum
@@ -22,6 +28,7 @@ public enum InstrumentOptions
     private final String instrumentName;
 
     /**
+     *
      * Private Constructor -> Sets the Enums
      * @param instrumentName String representation of the Enum
      */

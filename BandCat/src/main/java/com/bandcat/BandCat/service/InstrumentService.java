@@ -117,12 +117,12 @@ public class InstrumentService
         List<User> usersFound = new ArrayList<>();
         List<Instrument> instruments = null;
 
-        if (instrument.getInstrumentName() != null && instrument.getConfidence() != 0)
+        if (instrument.getInstrumentName() != InstrumentOptions.NONE && instrument.getConfidence() != 0)
         {
             // Search by name and confidence
             instruments = instrumentRepo.findListByInstrumentNameAndConfidence(instrument.getInstrumentName(), instrument.getConfidence());
         }
-        else if (instrument.getInstrumentName() != null)
+        else if (instrument.getInstrumentName() != InstrumentOptions.NONE)
         {
             // Search by name
             instruments = instrumentRepo.findListByInstrumentName(instrument.getInstrumentName());

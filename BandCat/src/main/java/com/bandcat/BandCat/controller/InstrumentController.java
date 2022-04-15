@@ -42,6 +42,23 @@ public class InstrumentController
     }
 
     /**
+     * Method -> Gets a list of Users based on the Instrument being passed in
+     * @param instrument The Instrument search criteria
+     * @return The list of Users found
+     */
+    @PostMapping("/findUsers")
+    public List<User> findByInstrument(@RequestBody Instrument instrument)
+    {
+        // If there is an instrument to search for
+        if (instrument != null)
+        {
+            // Search for users based on the instrument
+            return instrumentService.findListByInstrument(instrument);
+        }
+        else return null;
+    }
+
+    /**
      * Method to get all Instruments
      * @author Tyler, Marcus
      *
@@ -68,7 +85,6 @@ public class InstrumentController
      * Method to get all Instruments by confidence
      * @author Tyler, Marcus
      * @param confidence Confidence amount to search by
-     *
      */
     @GetMapping("/allByConfidence/{confidence}")
     public List<Instrument> getAllInstruments(@PathVariable int confidence)

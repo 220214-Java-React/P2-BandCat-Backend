@@ -25,4 +25,9 @@ public interface InstrumentRepo extends JpaRepository<Instrument, Integer>
      * @see com.bandcat.BandCat.service.InstrumentService#findListByConfidence(Integer)
      */
     List<Instrument> findListByConfidence(Integer confidence);
+
+    /**
+     * @see com.bandcat.BandCat.service.InstrumentService#findListByInstrument(Instrument) 
+     */
+    List<Instrument> findListByInstrumentNameAndConfidence(InstrumentOptions instrumentName, Integer confidence);
 }

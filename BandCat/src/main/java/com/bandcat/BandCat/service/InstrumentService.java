@@ -7,6 +7,7 @@ import com.bandcat.BandCat.repo.InstrumentRepo;
 import com.bandcat.BandCat.repo.UserRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -102,5 +103,47 @@ public class InstrumentService
     public List<Instrument> findListByConfidence(Integer confidence)
     {
         return instrumentRepo.findListByConfidence(confidence);
+    }
+
+
+    /**
+     * @author Marcus
+     * Method -> Gets the list of Users with a matching Instrument
+     * @param instrument The Instrument search criteria
+     * @return The List of Users found
+     */
+    public List<User> findListByInstrument(Instrument instrument)
+    {
+        List<User> usersFound = new ArrayList<>();
+        List<Instrument> instruments = null;
+
+        if (instrument.getInstrumentName() != null && instrument.getConfidence() != 0)
+        {
+            // Search by name and confidence
+            instruments = instrumentRepo.findListByInstrumentNameAndConfidence(instrument.getInstrumentName(), instrument.getConfidence());
+        }
+        else if (instrument.getInstrumentName() != null)
+        {
+            // Search by name
+            instruments = instrumentRepo.findListByInstrumentName(instrument.getInstrumentName());
+        }
+        else if (instrument.getConfidence() != 0)
+        {
+            // Search by confidence
+            instruments = instrumentRepo.findListByConfidence(instrument.getConfidence());
+        }
+
+        // If instruments were found
+        if (instruments != null)
+        {
+            // Get the list of users based on this instrument
+            for (Instrument i: instruments)
+            {
+                usersFound.add(userRepo.getById(i.getInstrumentID()));
+            }
+        }
+
+        // Return the list of Users
+        return usersFound;
     }
 }

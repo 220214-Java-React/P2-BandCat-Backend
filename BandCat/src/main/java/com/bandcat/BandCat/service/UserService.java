@@ -38,7 +38,8 @@ public class UserService
      */
     public User createNewUser(User user)
     {
-       return userRepo.save(user);
+
+        return userRepo.save(user);
     }
 
     /**
@@ -59,7 +60,7 @@ public class UserService
      */
     public User findByUsername(String username)
     {
-        return userRepo.findByUsername(username);
+        return userRepo.findByUsername(username).orElseThrow(() -> new RuntimeException("findByUsername: No User found!"));
     }
 
     /**
@@ -68,10 +69,9 @@ public class UserService
      * @param id The User ID to search by
      * @return The User found
      */
-    public User findByUserID(Integer id){
-
-        return userRepo.findById(id).orElse(new User());
-
+    public User findByUserID(Integer id)
+    {
+        return userRepo.findById(id).orElseThrow(() -> new RuntimeException("findByUserID: No User found!"));
     }
 
     /**

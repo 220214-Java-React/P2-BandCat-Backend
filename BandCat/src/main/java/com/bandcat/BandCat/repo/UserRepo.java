@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.xml.ws.ResponseWrapper;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * This class is designed to handle the persistence logic
@@ -25,5 +26,5 @@ public interface UserRepo extends JpaRepository<User, Integer>
      * @param username The username to search for
      * @return The User found
      */
-    User findByUsername(String username);
+    Optional<User> findByUsername(String username);
 }

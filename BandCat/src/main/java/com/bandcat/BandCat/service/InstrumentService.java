@@ -47,7 +47,7 @@ public class InstrumentService
     public Instrument createNewInstrument(Instrument instrument, User userToUpdate)
     {
         // Get the user to update, also to assign their instrument
-        userToUpdate = userRepo.findByUsername(userToUpdate.getUsername());
+        userToUpdate = userRepo.findByUsername(userToUpdate.getUsername()).orElseThrow(() -> new RuntimeException("No User was found!"));
 
         // Set the new Instrument's User
         instrument.setUser(userToUpdate);
@@ -56,7 +56,7 @@ public class InstrumentService
         userToUpdate.setInstrument(instrument);
 
         // Update user in database which also creates the Instrument record
-        userToUpdate = userService.createNewUser(userToUpdate);
+        userToUpdate = userService.updateUser(userToUpdate);
 
         // Return the instrument created
         return userToUpdate.getInstrument();

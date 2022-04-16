@@ -5,6 +5,7 @@ import com.bandcat.BandCat.model.InstrumentOptions;
 import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.service.InstrumentService;
 import com.bandcat.BandCat.service.UserService;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +22,17 @@ import java.util.List;
 @RequestMapping("/instruments")
 public class InstrumentController
 {
-    @Autowired
-    InstrumentService instrumentService;
+    final private InstrumentService instrumentService;
+    final private UserService userService;
+    final private Logger logger;
 
-    @Autowired
-    UserService userService;
+
+    public InstrumentController(InstrumentService instrumentService, UserService userService, Logger logger)
+    {
+        this.instrumentService = instrumentService;
+        this.userService = userService;
+        this.logger = logger;
+    }
 
     /**
      * Method to create new Instrument from a http request
@@ -37,8 +44,19 @@ public class InstrumentController
     @PostMapping("/{id}")
     public Instrument createInstrument(@RequestBody Instrument instrument, @PathVariable int id)
     {
-        User u = userService.findByUserID(id);
-        return instrumentService.createNewInstrument(instrument, u);
+        if (instrument != null && id != 0)
+        {
+            try
+            {
+                User u = userService.findByUserID(id);
+                return instrumentService.createNewInstrument(instrument, u);
+            }
+            catch (Exception e)
+            {
+                logger.warn(e.getMessage());
+            }
+        }
+        return null;
     }
 
     /**

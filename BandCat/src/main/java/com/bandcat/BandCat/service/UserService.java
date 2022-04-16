@@ -1,9 +1,11 @@
 package com.bandcat.BandCat.service;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.repo.UserRepo;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -15,30 +17,50 @@ import java.util.List;
 public class UserService
 {
     /**
-     * Reference to UserRepo instance
+     * Dependencies needed
      */
     final private UserRepo userRepo;
+    final private BCrypt.Hasher hasher;
+    final private String SALT = ".512HxpO$qvUt!7y";
 
     /**
      * @author Marcus
      * Constructor -> Spring will pass in UserRepo instance
      * @param uR The instance of UserRepo needed
      */
-    public UserService(UserRepo uR)
+    public UserService(UserRepo uR, BCrypt.Hasher hasher)
     {
         this.userRepo = uR;
+        this.hasher = hasher;
     }
 
     /**
      * @author Marcus
-     * Method -> Creates a new user/Updates a user
+     * Method -> Creates a new user
      * @param user The User to persist
-     *
      * @return The User that was persisted
      */
     public User createNewUser(User user)
     {
-       return userRepo.save(user);
+        String encPass = encryptPassword(user.getPassword());
+
+        if (encPass != null)
+        {
+            user.setPassword(encPass);
+            return userRepo.save(user);
+        }
+        else return null;
+    }
+
+    /**
+     * Method -> Updates a User's info
+     * @author Tyler, Marcus
+     * @param user User to update
+     * @return The Updated User
+     */
+    public User updateUser(User user)
+    {
+        return userRepo.save(user);
     }
 
     /**
@@ -59,7 +81,7 @@ public class UserService
      */
     public User findByUsername(String username)
     {
-        return userRepo.findByUsername(username);
+        return userRepo.findByUsername(username).orElseThrow(() -> new RuntimeException("findByUsername: No User found!"));
     }
 
     /**
@@ -68,10 +90,9 @@ public class UserService
      * @param id The User ID to search by
      * @return The User found
      */
-    public User findByUserID(Integer id){
-
-        return userRepo.findById(id).orElse(new User());
-
+    public User findByUserID(Integer id)
+    {
+        return userRepo.findById(id).orElseThrow(() -> new RuntimeException("findByUserID: No User found!"));
     }
 
     /**
@@ -86,6 +107,19 @@ public class UserService
 
 
     /**
+     * Method -> Password encryption
+     * @author Tyler, Marcus
+     * @param password Password to encrypt
+     * @return The encrypted password
+     */
+    public String encryptPassword(String password) {
+        return new String(hasher.hash(4,
+                SALT.getBytes(StandardCharsets.UTF_8),
+                password.getBytes(StandardCharsets.UTF_8)),
+                StandardCharsets.UTF_8);
+    }
+
+    /**
      * Method -> Compares the password between the database user and login user
      * @author Marcus
      * @param user User logging in
@@ -94,6 +128,10 @@ public class UserService
      */
     public boolean comparePassword(User user, User dbUser)
     {
+        String encPass = encryptPassword(user.getPassword());
+
+        user.setPassword(encPass);      // Encrypt password for comparison
+
         return user.getPassword().equals(dbUser.getPassword());
     }
 }

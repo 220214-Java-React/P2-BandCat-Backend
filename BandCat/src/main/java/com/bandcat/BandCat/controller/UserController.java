@@ -4,6 +4,8 @@ import com.bandcat.BandCat.model.Instrument;
 import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.service.InstrumentService;
 import com.bandcat.BandCat.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,52 +20,104 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/users")
-public class UserController {
-    @Autowired
-    UserService userService;
+public class UserController
+{
+    /**
+     * Reference to Dependencies
+     */
+    final private UserService userService;
+    final private InstrumentService instrumentService;
+    final private Logger logger;
 
-    @Autowired
-    InstrumentService instrumentService;
+    /**
+     * Constructor -> Get needed dependencies
+     * @author Tyler, Marcus
+     * @param userService UserService dependency
+     * @param instrumentService InstrumentService dependency
+     * @param logger Logger dependency
+     */
+    public UserController(UserService userService, InstrumentService instrumentService, Logger logger)
+    {
+        this.userService = userService;
+        this.instrumentService = instrumentService;
+        this.logger = logger;
+    }
 
     /**
      * A method to create a user from a http request
-     * @param user
+     * @param user User to create
      * @author Tom and Tyler
      */
     @PostMapping
     public User createNewUser(@RequestBody User user)
     {
-        return userService.createNewUser(user);  // returns user profile
+        if (user != null)
+        {
+            user = userService.createNewUser(user);  // returns user profile
+
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                logger.warn("Couldn't encrypt password upon creation!");
+                return null;
+            }
+        }
+        else
+        {
+            return null;    // Return null since a proper User object was not received
+        }
+
     }
 
+    /**
+     * Gets all Users
+     * @return The List of Users found
+     */
     @GetMapping
     public List<User> getAllUsers()
     {
         return userService.getAllUsers();
-
     }
 
     /**
      * A method to find a user by their User ID
      * @author Tyler
-     * @param id
+     * @param id ID to search by
      */
     @GetMapping("/{id}")
     public User getByUserId(@PathVariable Integer id)
     {
-        return userService.findByUserID(id); // returns user profile according to their ID number
-
+        try
+        {
+            return userService.findByUserID(id); // returns user profile according to their ID number
+        }
+        catch (Exception e)
+        {
+            logger.warn(e.getMessage());    // Log exception
+            return null;                    // Return null since no User was found
+        }
     }
 
     /**
      * A method to find user information based off username
      * @author Tyler
-     * @param username
+     * @param username Username to search by
      */
     @GetMapping("/byUsername/{username}")
     public User findByUsername(@PathVariable String username)
     {
-        return userService.findByUsername(username); // returns a user profile based off their username
+        try
+        {
+            return userService.findByUsername(username); // returns a user profile based off their username
+        }
+        catch (Exception e)
+        {
+            logger.warn(e.getMessage());    // Log exception
+            return null;                    // Return null since no User was found
+        }
     }
 
     /**

@@ -30,13 +30,16 @@ public class LoginController
     @PostMapping
     public User checkLogin(@RequestBody User user)
     {
-        User dbUser = userService.findByUsername(user.getUsername());
-
-        if (dbUser != null) // Check if User exists
+        if (user != null)
         {
-            if (userService.comparePassword(user, dbUser))  // Check password
+            User dbUser = userService.findByUsername(user.getUsername());
+
+            if (dbUser != null) // Check if User exists
             {
-                user = dbUser;  // User credentials match
+                if (userService.comparePassword(user, dbUser))  // Check password
+                {
+                    user = dbUser;  // User credentials match
+                }
             }
         }
 

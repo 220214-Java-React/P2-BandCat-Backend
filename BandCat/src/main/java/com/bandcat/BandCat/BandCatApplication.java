@@ -1,5 +1,6 @@
 package com.bandcat.BandCat;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
@@ -19,4 +20,9 @@ public class BandCatApplication {
 		return LogManager.getLogger();
 	}
 
+	@Bean
+	public BCrypt.Hasher getHasher()
+	{
+		return BCrypt.withDefaults();
+	}
 }

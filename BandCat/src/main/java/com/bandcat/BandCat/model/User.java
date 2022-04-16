@@ -23,6 +23,7 @@ public class User
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userID;
+    @Column(unique = true)
     private String username;
     private String password;
     private String email;

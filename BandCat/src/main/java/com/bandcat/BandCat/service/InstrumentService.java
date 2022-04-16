@@ -56,7 +56,7 @@ public class InstrumentService
         userToUpdate.setInstrument(instrument);
 
         // Update user in database which also creates the Instrument record
-        userToUpdate = userService.createNewUser(userToUpdate);
+        userToUpdate = userService.updateUser(userToUpdate);
 
         // Return the instrument created
         return userToUpdate.getInstrument();

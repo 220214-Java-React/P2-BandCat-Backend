@@ -53,7 +53,17 @@ public class UserController
     {
         if (user != null)
         {
-            return userService.createNewUser(user);  // returns user profile
+            user = userService.createNewUser(user);  // returns user profile
+
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                logger.warn("Couldn't encrypt password upon creation!");
+                return null;
+            }
         }
         else
         {

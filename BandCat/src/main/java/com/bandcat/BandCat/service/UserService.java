@@ -36,7 +36,7 @@ public class UserService
 
     /**
      * @author Marcus
-     * Method -> Creates a new user/Updates a user
+     * Method -> Creates a new user
      * @param user The User to persist
      * @return The User that was persisted
      */
@@ -50,6 +50,17 @@ public class UserService
             return userRepo.save(user);
         }
         else return null;
+    }
+
+    /**
+     * Method -> Updates a User's info
+     * @author Tyler, Marcus
+     * @param user User to update
+     * @return The Updated User
+     */
+    public User updateUser(User user)
+    {
+        return userRepo.save(user);
     }
 
     /**
@@ -117,7 +128,9 @@ public class UserService
      */
     public boolean comparePassword(User user, User dbUser)
     {
-        user.setPassword(encryptPassword(user.getPassword()));      // Encrypt password for comparison
+        String encPass = encryptPassword(user.getPassword());
+
+        user.setPassword(encPass);      // Encrypt password for comparison
 
         return user.getPassword().equals(dbUser.getPassword());
     }

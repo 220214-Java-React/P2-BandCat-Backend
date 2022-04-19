@@ -73,7 +73,10 @@ public class InstrumentController
             // Search for users based on the instrument
             return instrumentService.findListByInstrument(instrument);
         }
-        else return null;
+        else {
+            logger.warn("Couldn't find users by instrument!");
+            return null;
+        }
     }
 
     /**

@@ -2,6 +2,7 @@ package com.bandcat.BandCat.controller;
 
 import com.bandcat.BandCat.model.User;
 import com.bandcat.BandCat.service.UserService;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,15 +12,17 @@ public class LoginController
 {
 
     private final UserService userService;
+    final private Logger logger;
 
     /**
      * Constructor -> Injects needed dependencies
      * @author Marcus
      * @param userService UserService dependency
      */
-    public LoginController(UserService userService)
+    public LoginController(UserService userService, Logger logger)
     {
         this.userService = userService;
+        this.logger = logger;
     }
 
     /**
@@ -42,7 +45,7 @@ public class LoginController
                 }
             }
         }
-
+        logger.info("User found during login: " + user);
         return user;    // Returns the User, has no ID if User had wrong password or doesn't exist
     }
 }

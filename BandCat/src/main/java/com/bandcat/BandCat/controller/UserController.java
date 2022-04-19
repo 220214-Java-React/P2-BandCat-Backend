@@ -57,6 +57,7 @@ public class UserController
 
             if (user != null)
             {
+                logger.info(user);
                 return user;
             }
             else

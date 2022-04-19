@@ -132,6 +132,9 @@ public class InstrumentService
             // Search by confidence
             instruments = instrumentRepo.findListByConfidence(instrument.getConfidence());
         }
+        else {
+            instruments = instrumentRepo.findAll();
+        }
 
         // If instruments were found
         if (instruments != null)
